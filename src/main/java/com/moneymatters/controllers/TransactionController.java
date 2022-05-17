@@ -1,6 +1,6 @@
 package com.moneymatters.controllers;
 
-import com.moneymatters.data.domain.Transaction;
+import com.moneymatters.data.domain.transactions.Transaction;
 import com.moneymatters.mediators.TransactionMediator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

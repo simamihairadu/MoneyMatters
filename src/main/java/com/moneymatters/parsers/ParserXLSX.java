@@ -1,11 +1,10 @@
 package com.moneymatters.parsers;
 
-import com.moneymatters.data.domain.Transaction;
+import com.moneymatters.data.domain.transactions.Transaction;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -21,9 +20,16 @@ public class ParserXLSX {
     private static int CREDIT_AMOUNT_POS = 3;
     private static int DESCRIPTION_AMOUNT_POS = 11;
 
+    /**
+     * Extract the transactions from an Excel file.
+     *
+     * @param excelFile the Excel file that the transactions will be extracted from
+     * @return
+     */
     public List<Transaction> readTransactions(String excelFile) {
 
         List<Transaction> transactions = new ArrayList<>();
+
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(excelFile));
             transactions = readAllSheets(workbook);
@@ -35,6 +41,12 @@ public class ParserXLSX {
         return transactions;
     }
 
+    /**
+     * Go through all the sheets of the workbook and extract the transactions.
+     *
+     * @param workbook
+     * @return
+     */
     private List<Transaction> readAllSheets(XSSFWorkbook workbook) {
 
         List<Transaction> transactions = new ArrayList<>();
@@ -47,6 +59,12 @@ public class ParserXLSX {
         return transactions;
     }
 
+    /**
+     * Read a specific Excel sheet and extract the transaction. The values are expected at specific indices.
+     *
+     * @param sheet
+     * @return
+     */
     private List<Transaction> readSheet(XSSFSheet sheet) {
 
         List<Transaction> transactions = new ArrayList<>();

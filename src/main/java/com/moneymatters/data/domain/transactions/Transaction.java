@@ -1,4 +1,4 @@
-package com.moneymatters.data.domain;
+package com.moneymatters.data.domain.transactions;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,12 +31,24 @@ public class Transaction {
     @Column(name = "description")
     private String description;
 
+    /**
+     *
+     *
+     * @param transactionDate
+     * @param debitAmount
+     * @param creditAmount
+     * @param description
+     */
     public Transaction(Date transactionDate, BigDecimal debitAmount, BigDecimal creditAmount, String description) {
         this.transactionDate = transactionDate;
         this.debitAmount = debitAmount;
         this.creditAmount = creditAmount;
-        this.description = description.split("\\|")[0];
+        this.description = description.split("\\|")[0]; // get only the string up until the first " | "
     }
 
+    /**
+     *
+     *
+     */
     public Transaction() {}
 }
